@@ -29,13 +29,10 @@ class _SurahBuilderState extends State<SurahBuilder> {
   }
 
   jumbToAyah() {
-    if (fabIsClicked) {
       itemScrollController.scrollTo(
           index: widget.ayah,
           duration: const Duration(seconds: 2),
           curve: Curves.easeInOutCubic);
-    }
-    fabIsClicked = false;
   }
 
   Row verseBuilder(int index, previousVerses) {

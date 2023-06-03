@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'main.dart';
 import 'mydrawer.dart';
 import 'surah_builder.dart';
 import 'constant.dart';
@@ -85,63 +86,73 @@ class _IndexPageState extends State<IndexPage> {
   Container indexCreator(quran, context) {
     return Container(
       color: const Color.fromARGB(255, 221, 250, 236),
-      child: ListView(
+      child: Column(
         children: [
-          for (int i = 0; i < 114; i++)
-            Container(
-              color: i % 2 == 0
-                  ? Colors.white60
-                  : Colors.orange[100],
-              child: TextButton(
-                child: Row(
-                  children: [
-                    ArabicSuraNumber(i: noOfVerses[i]),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+          MaterialButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>CalculatorScreen()));
+          },child:Text(' search')),
+          Expanded(
+            child: ListView(
+              children: [
+                for (int i = 0; i < 114; i++)
 
+                  Container(
+                    color: i % 2 == 0
+                        ? Colors.white60
+                        : Colors.orange[100],
+                    child: TextButton(
+                      child: Row(
+                        children: [
+                          ArabicSuraNumber(i: noOfVerses[i]),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+
+                              ],
+                            ),
+                          ),
+                          const Expanded(child: SizedBox()),
+                          Text(
+                            arabicName[i]['name'],
+                            style: const TextStyle(
+                                fontSize: 30,
+                                color: Colors.black87,
+                                fontFamily: 'quran',
+                                // shadows: [
+                                //   Shadow(
+                                //     offset: Offset(.5, .5),
+                                //     // blurRadius: 1.0,
+                                //     color: Color.fromARGB(255, 130, 130, 130),
+                                //   )
+                                // ],
+                            ),
+                            textDirection: TextDirection.rtl,
+                          ),
                         ],
                       ),
+                      onPressed: () {
+                        fabIsClicked = false;
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SurahBuilder(
+                                    arabic: quran[0],
+                                    sura: i,
+                                    suraName: arabicName[i]['name'],
+                                     ayah: 0,
+                                  )),
+                        );
+                      },
                     ),
-                    const Expanded(child: SizedBox()),
-                    Text(
-                      arabicName[i]['name'],
-                      style: const TextStyle(
-                          fontSize: 30,
-                          color: Colors.black87,
-                          fontFamily: 'quran',
-                          // shadows: [
-                          //   Shadow(
-                          //     offset: Offset(.5, .5),
-                          //     // blurRadius: 1.0,
-                          //     color: Color.fromARGB(255, 130, 130, 130),
-                          //   )
-                          // ],
-                      ),
-                      textDirection: TextDirection.rtl,
-                    ),
-                  ],
-                ),
-                onPressed: () {
-                  fabIsClicked = false;
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SurahBuilder(
-                              arabic: quran[0],
-                              sura: i,
-                              suraName: arabicName[i]['name'],
-                               ayah: 0,
-                            )),
-                  );
-                },
-              ),
+                  ),
+              ],
             ),
+          ),
         ],
       ),
     );

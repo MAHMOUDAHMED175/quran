@@ -17,7 +17,7 @@ String arabicFont = 'quran';
 double arabicFontSize = 28;
 double mushafFontSize = 40;
 
-Uri quranAppurl = Uri.parse('https://github.com/itsherifahmed');
+Uri quranAppurl = Uri.parse('https://github.com/MAHMOUDAHMED175/quran');
 
 Future saveSettings() async {
   final prefs = await SharedPreferences.getInstance();
@@ -298,5 +298,16 @@ Future readJson ()async{
   final data=json.decode(response);
   arabic=data["quran"];
   malayalam=data["malayalam"];
+  print(quran);
   return quran=[arabic,malayalam];
+
 }
+
+
+// List searchCount = [];
+//
+// void searchProductCount({required String text}) {
+//   searchCount = quran
+//       .where((element) => int.parse(element['productCount']) <= num)
+//       .toList();
+// }

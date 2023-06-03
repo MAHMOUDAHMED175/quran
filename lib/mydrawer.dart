@@ -58,7 +58,7 @@ class MyDrawer extends StatelessWidget {
               'Share',
             ),
             onTap: () {
-              Share.share('''*Quran app*\n''');
+              Share.share('''*Quran app*\nDevelop By Mahmoud Ahmed''');
               Navigator.pop(context);
             },
           ),
